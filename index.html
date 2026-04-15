@@ -2,210 +2,479 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Angel | AI Automation & Systems Builder</title>
-<meta name="description" content="I build n8n workflows, Airtable backends, AI integrations, and custom dashboards for businesses that want to stop doing things by hand.">
-<meta property="og:title" content="Angel | AI Automation & Systems Builder">
-<meta property="og:description" content="I build systems that replace manual work.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Angel — I Automate Your Business So You Can Stop Working In It</title>
+<meta name="description" content="Custom automation systems that save 10-20 hours/week. n8n workflows, Airtable backends, AI integrations. From $300.">
+<meta property="og:title" content="Angel — Automation Systems That Replace Manual Work">
+<meta property="og:description" content="Stop losing time to repetitive tasks. I build systems that run your business while you focus on growth.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ainjlgaib.com">
-<meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#0a0a0f">
-<link rel="manifest" href="manifest.json">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#07070b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a25;--border:#2a2a3a;--text:#e8e8f0;--dim:#8888a0;--accent:#4af;--accent2:#7c5cff;--green:#4ade80;--glow:rgba(68,170,255,.08)}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");z-index:9999}
+:root{
+  --bg:#07070b;--surface:#0e0e15;--surface2:#14141e;--border:#1e1e2c;
+  --text:#ededf2;--dim:#74748a;--accent:#5b8af5;--accent-glow:rgba(91,138,245,.12);
+  --green:#56d67c;--green-glow:rgba(86,214,124,.1);--warm:#f5c45b;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.025;z-index:9999;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:640px;margin:0 auto;padding:0 24px}
 
-.container{max-width:680px;margin:0 auto;padding:0 24px}
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
 
-/* HERO */
-.hero{padding:80px 0 60px;text-align:center;position:relative}
-.hero::before{content:'';position:absolute;top:40px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(68,170,255,.06),transparent 70%);pointer-events:none}
-.tag{display:inline-block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(68,170,255,.25);padding:6px 14px;border-radius:100px;margin-bottom:24px;background:rgba(68,170,255,.05)}
-h1{font-size:clamp(32px,6vw,48px);font-weight:700;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.subtitle{font-size:18px;color:var(--dim);line-height:1.6;max-width:520px;margin:0 auto 32px}
-.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none;transition:all .2s}
-.btn-primary{background:var(--accent);color:var(--bg)}.btn-primary:hover{background:#6bc0ff;transform:translateY(-1px)}
-.btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent}.btn-ghost:hover{border-color:var(--accent);background:rgba(68,170,255,.05)}
+/* ── AVAILABILITY BADGE ── */
+.avail-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(86,214,124,.08);border:1px solid rgba(86,214,124,.2);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--green);margin-bottom:28px;opacity:0;animation:fadeUp .7s .05s ease both}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(86,214,124,.4)}50%{box-shadow:0 0 0 5px rgba(86,214,124,0)}}
 
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:48px 0}
-.stat{background:var(--surface);padding:24px;text-align:center}
-.stat-num{font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--accent);display:block}
-.stat-label{font-size:12px;color:var(--dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+/* ── HERO ── */
+.hero{padding:100px 0 80px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:500px;background:radial-gradient(circle,var(--accent-glow),transparent 70%);pointer-events:none}
+.hero-eyebrow{font-size:13px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;opacity:0;animation:fadeUp .7s .1s ease both}
+.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(36px,7.5vw,56px);font-weight:400;line-height:1.12;margin-bottom:24px;color:var(--text);opacity:0;animation:fadeUp .7s .2s ease both}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:17px;color:var(--dim);max-width:480px;margin:0 auto 40px;line-height:1.7;opacity:0;animation:fadeUp .7s .3s ease both}
+.hero-cta{opacity:0;animation:fadeUp .7s .4s ease both}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;padding:16px 36px;border-radius:12px;text-decoration:none;transition:all .25s;cursor:pointer;border:none}
+.btn-main{background:var(--accent);color:var(--bg);box-shadow:0 0 40px var(--accent-glow),0 4px 20px rgba(0,0,0,.3)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(91,138,245,.2),0 8px 30px rgba(0,0,0,.4)}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border);margin-left:12px}
+.btn-ghost:hover{color:var(--text);border-color:var(--accent)}
 
-/* SECTION */
-.section{margin:56px 0}
-.section-title{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+/* ── PAIN ── */
+.pain{padding:60px 0;text-align:center}
+.pain-headline{font-family:'Instrument Serif',serif;font-size:clamp(24px,4vw,32px);line-height:1.3;margin-bottom:16px}
+.pain-body{font-size:16px;color:var(--dim);max-width:520px;margin:0 auto;line-height:1.7}
 
-/* SERVICES */
-.services{display:flex;flex-direction:column;gap:12px}
-.service{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .25s;cursor:default}
-.service:hover{border-color:rgba(68,170,255,.3);background:var(--surface2);transform:translateX(4px)}
-.service-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.service-name{font-size:16px;font-weight:600}
-.service-price{font-family:'Space Mono',monospace;font-size:14px;color:var(--green)}
-.service-desc{font-size:14px;color:var(--dim);line-height:1.5}
+/* ── PROOF ── */
+.proof{padding:40px 0}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.proof-item{background:var(--surface);padding:28px 16px;text-align:center}
+.proof-num{font-family:'Instrument Serif',serif;font-size:36px;color:var(--accent);display:block;line-height:1}
+.proof-label{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:8px}
 
-/* PROJECTS */
-.projects{display:flex;flex-direction:column;gap:12px}
-.project{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .25s}
-.project:hover{border-color:rgba(124,92,255,.3);transform:translateX(4px)}
-.project-name{font-size:16px;font-weight:600;margin-bottom:4px}
-.project-type{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
-.project-desc{font-size:14px;color:var(--dim);line-height:1.5;margin-bottom:12px}
-.tech-tags{display:flex;flex-wrap:wrap;gap:6px}
-.tech-tag{font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(68,170,255,.08);color:var(--accent);border:1px solid rgba(68,170,255,.15);font-family:'Space Mono',monospace}
+/* ── TOOLS ── */
+.tools{padding:40px 0 60px}
+.section-label{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:28px;text-align:center}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tool-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 14px;text-align:center;transition:all .2s}
+.tool-card:hover{border-color:rgba(91,138,245,.3);transform:translateY(-2px)}
+.tool-icon{font-size:28px;margin-bottom:8px}
+.tool-name{font-size:13px;font-weight:600;margin-bottom:2px}
+.tool-use{font-size:11px;color:var(--dim)}
 
-/* PROCESS */
-.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.step{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
-.step-num{font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:var(--accent);opacity:.4;margin-bottom:8px}
-.step-title{font-size:14px;font-weight:600;margin-bottom:4px}
-.step-desc{font-size:12px;color:var(--dim);line-height:1.4}
+/* ── WORK ── */
+.work{padding:40px 0 60px}
+.work-cards{display:flex;flex-direction:column;gap:12px}
+.work-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;align-items:center;gap:16px;text-decoration:none;color:inherit;transition:all .2s}
+.work-card:hover{border-color:rgba(91,138,245,.3);transform:translateY(-2px)}
+.work-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.work-content{flex:1;min-width:0}
+.work-name{font-size:15px;font-weight:600;margin-bottom:3px}
+.work-desc{font-size:13px;color:var(--dim);line-height:1.5}
+.work-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--surface2);color:var(--dim);white-space:nowrap}
 
-/* CTA BOTTOM */
-.cta-section{text-align:center;padding:60px 0 80px}
-.cta-section h2{font-size:28px;font-weight:700;margin-bottom:12px}
-.cta-section p{color:var(--dim);margin-bottom:28px;font-size:16px}
+/* ── OFFERS ── */
+.offers{padding:40px 0}
+.offer-cards{display:flex;flex-direction:column;gap:14px}
+.offer{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;position:relative;transition:all .25s}
+.offer:hover{border-color:rgba(91,138,245,.3);transform:translateY(-2px)}
+.offer-popular{border-color:var(--accent);background:linear-gradient(135deg,var(--surface) 0%,rgba(91,138,245,.04) 100%)}
+.offer-popular::before{content:'MOST POPULAR';position:absolute;top:-10px;right:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;background:var(--accent);color:var(--bg);padding:4px 12px;border-radius:6px}
+.offer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.offer-name{font-size:18px;font-weight:600}
+.offer-price{font-size:20px;font-weight:700;color:var(--accent);white-space:nowrap}
+.offer-desc{font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:14px}
+.offer-includes{list-style:none;display:flex;flex-direction:column;gap:7px}
+.offer-includes li{font-size:13px;color:var(--dim);padding-left:18px;position:relative}
+.offer-includes li::before{content:'';position:absolute;left:0;top:6px;width:7px;height:7px;border-radius:50%;background:var(--green)}
 
-/* FOOTER */
+/* ── PROCESS ── */
+.process{padding:40px 0 60px}
+.steps{display:flex;flex-direction:column;position:relative}
+.steps::before{content:'';position:absolute;left:19px;top:28px;bottom:28px;width:1px;background:var(--border)}
+.step{display:flex;gap:20px;padding:18px 0}
+.step-dot{width:40px;height:40px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:18px;color:var(--accent);flex-shrink:0;z-index:1}
+.step-content{padding-top:6px}
+.step-title{font-size:16px;font-weight:600;margin-bottom:4px}
+.step-desc{font-size:14px;color:var(--dim);line-height:1.6}
+
+/* ── FAQ ── */
+.faq{padding:40px 0}
+.faq-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.faq-item{background:var(--surface)}
+.faq-q{width:100%;text-align:left;padding:18px 20px;font-size:15px;font-weight:500;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;background:none;border:none;font-family:'Outfit',sans-serif}
+.faq-q:hover{color:var(--accent)}
+.faq-arrow{font-size:18px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(90deg)}
+.faq-a{display:none;padding:0 20px 18px;font-size:14px;color:var(--dim);line-height:1.7}
+.faq-item.open .faq-a{display:block}
+
+/* ── FORM ── */
+.form-section{padding:60px 0}
+.form-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden}
+.form-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:400px;height:200px;background:radial-gradient(ellipse,var(--accent-glow),transparent 70%);pointer-events:none}
+.form-headline{font-family:'Instrument Serif',serif;font-size:clamp(26px,5vw,34px);text-align:center;margin-bottom:8px;position:relative}
+.form-sub{text-align:center;font-size:15px;color:var(--dim);margin-bottom:32px;position:relative}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.form-input,.form-textarea,.form-select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px 15px;color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--accent)}
+.form-textarea{resize:vertical;min-height:100px}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2374748a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-select option{background:var(--surface2);color:var(--text)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-submit{width:100%;margin-top:8px;font-size:16px;padding:18px;position:relative}
+.form-submit:disabled{opacity:.6;cursor:not-allowed}
+.form-note{text-align:center;font-size:12px;color:var(--dim);margin-top:14px;position:relative}
+.form-success{display:none;text-align:center;padding:40px 20px}
+.form-success.show{display:block}
+.form-success h3{font-family:'Instrument Serif',serif;font-size:28px;margin-bottom:8px;color:var(--green)}
+.form-success p{color:var(--dim);font-size:15px}
+.form-fields.hide{display:none}
+
+/* ── CLOSE CTA ── */
+.close-cta{padding:32px 0 80px;text-align:center}
+.close-cta p{font-size:15px;color:var(--dim);margin-bottom:8px}
+.dm-link{color:var(--accent);text-decoration:none;font-weight:600;font-size:15px}
+.dm-link:hover{text-decoration:underline}
+
+/* ── FOOTER ── */
 .footer{text-align:center;padding:24px 0;border-top:1px solid var(--border);font-size:12px;color:var(--dim)}
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero,.stats,.section{animation:fadeUp .6s ease both}
-.stats{animation-delay:.1s}
-.section:nth-child(4){animation-delay:.15s}
-.section:nth-child(5){animation-delay:.2s}
+/* ── MOBILE FAB ── */
+.mobile-fab{display:none;position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));right:20px;z-index:100;padding:14px 22px;border-radius:100px;background:var(--accent);color:var(--bg);font-size:14px;font-weight:700;box-shadow:0 4px 24px rgba(91,138,245,.4);text-decoration:none}
+@media(max-width:520px){.mobile-fab{display:flex;align-items:center;gap:6px}}
 
-@media(max-width:500px){
-  .stats{grid-template-columns:1fr}
-  .process{grid-template-columns:1fr}
-  .hero{padding:60px 0 40px}
-  .cta-row{flex-direction:column;align-items:center}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:520px){
+  .hero{padding:72px 0 56px}
+  .form-row{grid-template-columns:1fr}
+  .form-box{padding:28px 20px}
+  .proof-grid{grid-template-columns:1fr}
+  .tools-grid{grid-template-columns:repeat(3,1fr)}
+  .btn-ghost{margin-left:0;margin-top:12px;display:inline-flex}
+  .hero-cta{display:flex;flex-direction:column;align-items:center;gap:0}
+  .offer-top{flex-direction:column;gap:4px}
 }
 </style>
 </head>
 <body>
 <div class="grain"></div>
+<a href="#start" class="mobile-fab">Start Project →</a>
 
-<div class="container">
-  <div class="hero">
-    <div class="tag">AI Automation Builder</div>
-    <h1>I build systems that replace manual work.</h1>
-    <p class="subtitle">n8n workflows, Airtable backends, AI integrations, and custom dashboards for businesses that want to stop doing things by hand.</p>
-    <div class="cta-row">
-      <a href="https://ig.me/m/ainjlgaib" class="btn btn-primary">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        DM Me
+<div class="wrap">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="avail-badge"><div class="avail-dot"></div>Currently accepting 2 new clients</div>
+    <div class="hero-eyebrow">Automation Systems Builder</div>
+    <h1>Stop doing manually what a <em>system</em> should handle.</h1>
+    <p class="hero-sub">I build automation that saves businesses 10–20 hours a week — lead follow-up, reporting, onboarding, operations. You tell me the problem, I make it disappear.</p>
+    <div class="hero-cta">
+      <a href="#start" class="btn btn-main">Start Your Project</a>
+      <a href="#offers" class="btn btn-ghost">See Pricing</a>
+    </div>
+  </section>
+
+  <!-- ═══ PAIN ═══ -->
+  <section class="pain">
+    <h2 class="pain-headline reveal">Every hour you spend on tasks a system could do<br>is an hour you're not growing your business.</h2>
+    <p class="pain-body reveal reveal-delay-1">Leads go cold because nobody followed up in time. Reports take half a day to compile. Your team copies data between tools because nothing talks to each other. You know it's costing you — you just haven't fixed it yet.</p>
+  </section>
+
+  <!-- ═══ PROOF ═══ -->
+  <section class="proof reveal">
+    <div class="proof-grid">
+      <div class="proof-item"><span class="proof-num">10+</span><span class="proof-label">Workflows Deployed</span></div>
+      <div class="proof-item"><span class="proof-num">5</span><span class="proof-label">Production Systems</span></div>
+      <div class="proof-item"><span class="proof-num">$0</span><span class="proof-label">Wasted on SaaS</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ TOOLS ═══ -->
+  <section class="tools">
+    <div class="section-label reveal">Stack</div>
+    <div class="tools-grid">
+      <div class="tool-card reveal reveal-delay-1">
+        <div class="tool-icon">⚡</div>
+        <div class="tool-name">n8n</div>
+        <div class="tool-use">Workflow automation</div>
+      </div>
+      <div class="tool-card reveal reveal-delay-2">
+        <div class="tool-icon">🗄️</div>
+        <div class="tool-name">Airtable</div>
+        <div class="tool-use">Database + views</div>
+      </div>
+      <div class="tool-card reveal reveal-delay-3">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-name">Claude AI</div>
+        <div class="tool-use">AI integrations</div>
+      </div>
+      <div class="tool-card reveal reveal-delay-1">
+        <div class="tool-icon">▲</div>
+        <div class="tool-name">Vercel</div>
+        <div class="tool-use">Deploy + hosting</div>
+      </div>
+      <div class="tool-card reveal reveal-delay-2">
+        <div class="tool-icon">📊</div>
+        <div class="tool-name">Meta API</div>
+        <div class="tool-use">Ads automation</div>
+      </div>
+      <div class="tool-card reveal reveal-delay-3">
+        <div class="tool-icon">📱</div>
+        <div class="tool-name">PWA</div>
+        <div class="tool-use">Mobile-first apps</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RECENT WORK ═══ -->
+  <section class="work">
+    <div class="section-label reveal">Recent Systems Built</div>
+    <div class="work-cards">
+      <a href="https://field-os-eta.vercel.app" target="_blank" class="work-card reveal">
+        <div class="work-icon" style="background:rgba(255,159,10,.1)">🏗️</div>
+        <div class="work-content">
+          <div class="work-name">FieldOS</div>
+          <div class="work-desc">Construction field ops PWA — crew time tracking, daily logs, safety reports, punch list. Built for Howard Building Corp.</div>
+        </div>
+        <div class="work-tag">PWA + Airtable</div>
       </a>
-      <a href="#projects" class="btn btn-ghost">See My Work</a>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Workflows Built</span></div>
-    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Production Systems</span></div>
-    <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Airtable Bases</span></div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Services</div>
-    <div class="services">
-      <div class="service">
-        <div class="service-header">
-          <span class="service-name">Single Workflow Automation</span>
-          <span class="service-price">from $300</span>
+      <a href="https://outreach-tracker-ten.vercel.app" target="_blank" class="work-card reveal reveal-delay-1">
+        <div class="work-icon" style="background:rgba(91,138,245,.1)">📡</div>
+        <div class="work-content">
+          <div class="work-name">Outreach Tracker</div>
+          <div class="work-desc">Multi-platform cold outreach system with auto follow-up alerts, pipeline tracking, and n8n sync across 7 channels.</div>
         </div>
-        <div class="service-desc">One automated pipeline solving one problem. Lead capture, follow-up sequences, data sync, reporting — built and deployed in 3-5 days.</div>
-      </div>
-      <div class="service">
-        <div class="service-header">
-          <span class="service-name">Multi-Step System</span>
-          <span class="service-price">from $800</span>
+        <div class="work-tag">n8n + Airtable</div>
+      </a>
+      <a href="https://nexus-mu-plum-80.vercel.app" target="_blank" class="work-card reveal reveal-delay-2">
+        <div class="work-icon" style="background:rgba(124,92,255,.1)">🧠</div>
+        <div class="work-content">
+          <div class="work-name">Nexus</div>
+          <div class="work-desc">Personal AI operating system — task management, weekly scorecard, Claude AI chat, outreach pipeline in one dashboard.</div>
         </div>
-        <div class="service-desc">3-5 connected workflows with an Airtable backend. Full CRM pipeline, client onboarding, or operations system. Delivered in 1-2 weeks.</div>
-      </div>
-      <div class="service">
-        <div class="service-header">
-          <span class="service-name">Full Automation Suite</span>
-          <span class="service-price">from $2,500</span>
-        </div>
-        <div class="service-desc">End-to-end system: database architecture, automation workflows, AI layer, and dashboard. Your entire operation, automated.</div>
-      </div>
-      <div class="service">
-        <div class="service-header">
-          <span class="service-name">Monthly Retainer</span>
-          <span class="service-price">from $500/mo</span>
-        </div>
-        <div class="service-desc">Ongoing maintenance, new workflows, optimization, and priority support. Your automation keeps evolving as your business grows.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="projects">
-    <div class="section-title">What I've Built</div>
-    <div class="projects">
-      <div class="project">
-        <div class="project-type">Construction Tech</div>
-        <div class="project-name">FieldOS — Construction Project Intelligence</div>
-        <div class="project-desc">Full communication and constraint tracking platform for general contractors. 9 linked database tables, AI-powered issue classification, role-based dashboards, automated notifications. Replaces $2K/month Procore licenses.</div>
-        <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Airtable</span><span class="tech-tag">Claude API</span><span class="tech-tag">Google Forms</span><span class="tech-tag">PWA</span></div>
-      </div>
-      <div class="project">
-        <div class="project-type">Ad Automation</div>
-        <div class="project-name">AdOS — Meta Ads Automation Engine</div>
-        <div class="project-desc">Automated Meta advertising system with deterministic routing logic. Handles 8 media paths (Photo/Reel/Story/Carousel × Paid/Organic), auto-scales winners, pauses underperformers.</div>
-        <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Meta Graph API</span><span class="tech-tag">Airtable</span><span class="tech-tag">Claude API</span></div>
-      </div>
-      <div class="project">
-        <div class="project-type">Personal AI OS</div>
-        <div class="project-name">Nexus — AI-Powered Life Operating System</div>
-        <div class="project-desc">Personal operating system with 10 Airtable tables, 3 automated n8n workflows (priority engine, approval executor, stale detector), AI chat with voice input, and a custom dashboard.</div>
-        <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Airtable</span><span class="tech-tag">Claude API</span><span class="tech-tag">Vercel</span><span class="tech-tag">PWA</span></div>
-      </div>
-      <div class="project">
-        <div class="project-type">Analysis Tool</div>
-        <div class="project-name">PIE — Pattern Intelligence Engine</div>
-        <div class="project-desc">Symbolic systems thinking framework with 5 analysis layers (Anchor, Action, Symbol, System, Leverage). Built as a PWA with persistent saved analyses.</div>
-        <div class="tech-tags"><span class="tech-tag">PWA</span><span class="tech-tag">Claude API</span><span class="tech-tag">IndexedDB</span></div>
-      </div>
-      <div class="project">
-        <div class="project-type">Voice Interface</div>
-        <div class="project-name">Operator — AI Voice Assistant</div>
-        <div class="project-desc">Jarvis-style voice PWA with 5 operational modes (Strategy, Research, Builder, Memory, Automate). Persistent memory via IndexedDB across sessions.</div>
-        <div class="tech-tags"><span class="tech-tag">PWA</span><span class="tech-tag">Web Speech API</span><span class="tech-tag">Claude API</span><span class="tech-tag">IndexedDB</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">How It Works</div>
-    <div class="process">
-      <div class="step"><div class="step-num">01</div><div class="step-title">Tell Me the Problem</div><div class="step-desc">DM me what's eating your time. I'll tell you if automation can fix it.</div></div>
-      <div class="step"><div class="step-num">02</div><div class="step-title">I Build the System</div><div class="step-desc">n8n workflows + Airtable backend + AI where it makes sense. Tested and deployed.</div></div>
-      <div class="step"><div class="step-num">03</div><div class="step-title">You Get Time Back</div><div class="step-desc">The system runs. You stop doing it manually. I maintain and improve over time.</div></div>
-    </div>
-  </div>
-
-  <div class="cta-section">
-    <h2>Ready to automate?</h2>
-    <p>Tell me what's taking too long. I'll show you how to fix it.</p>
-    <div class="cta-row">
-      <a href="https://ig.me/m/ainjlgaib" class="btn btn-primary">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        Start a Conversation
+        <div class="work-tag">Claude API + Airtable</div>
       </a>
     </div>
-  </div>
+  </section>
 
-  <div class="footer">Built by Angel · Los Angeles, CA</div>
+  <!-- ═══ OFFERS ═══ -->
+  <section class="offers" id="offers">
+    <div class="section-label reveal">Choose Your Build</div>
+    <div class="offer-cards">
+      <div class="offer reveal">
+        <div class="offer-top">
+          <span class="offer-name">Quick Build</span>
+          <span class="offer-price">$300–$500</span>
+        </div>
+        <div class="offer-desc">One automation solving one problem. You stop doing it manually within a week.</div>
+        <ul class="offer-includes">
+          <li>Single n8n workflow, tested and deployed</li>
+          <li>Connected to your existing tools</li>
+          <li>Delivered in 3–5 days</li>
+        </ul>
+      </div>
+      <div class="offer offer-popular reveal reveal-delay-1">
+        <div class="offer-top">
+          <span class="offer-name">Full System</span>
+          <span class="offer-price">$800–$2,500</span>
+        </div>
+        <div class="offer-desc">Multiple workflows + database + dashboard. Your entire process runs itself.</div>
+        <ul class="offer-includes">
+          <li>3–8 connected workflows</li>
+          <li>Airtable backend with role-based views</li>
+          <li>AI layer where it saves the most time</li>
+          <li>Delivered in 1–3 weeks</li>
+        </ul>
+      </div>
+      <div class="offer reveal reveal-delay-2">
+        <div class="offer-top">
+          <span class="offer-name">Monthly Retainer</span>
+          <span class="offer-price">$500–$1,500/mo</span>
+        </div>
+        <div class="offer-desc">Your systems keep improving as your business grows. New workflows, maintenance, priority support.</div>
+        <ul class="offer-includes">
+          <li>Ongoing optimization and new builds</li>
+          <li>Priority response time</li>
+          <li>No per-project fees</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ═══ -->
+  <section class="process">
+    <div class="section-label reveal">How It Works</div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-dot">1</div>
+        <div class="step-content">
+          <div class="step-title">Tell me what's eating your time</div>
+          <div class="step-desc">Fill out the form below or DM me. Describe the task that shouldn't require a human. I'll tell you exactly what I'd build and what it costs.</div>
+        </div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-dot">2</div>
+        <div class="step-content">
+          <div class="step-title">I build it in days, not months</div>
+          <div class="step-desc">You get a working system — n8n workflows, Airtable database, AI where it matters. Tested, deployed, documented. No bloated timelines.</div>
+        </div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-dot">3</div>
+        <div class="step-content">
+          <div class="step-title">The system runs, you don't</div>
+          <div class="step-desc">The task that used to take hours now takes seconds. Leads get followed up automatically. Reports generate themselves. You focus on what grows the business.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="faq">
+    <div class="section-label reveal">FAQ</div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What tools do you actually build with? <span class="faq-arrow">›</span></button>
+        <div class="faq-a">n8n for automation workflows, Airtable as the database and backend, Claude API for AI layers, Vercel for hosting, and Meta Graph API for ad automation. All production-grade tools — no toy integrations.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How fast can you deliver? <span class="faq-arrow">›</span></button>
+        <div class="faq-a">Quick Builds (single workflows) are 3–5 days. Full systems are 1–3 weeks depending on complexity. I build fast because I don't waste time on meetings — you describe the problem, I solve it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need to know how to code? <span class="faq-arrow">›</span></button>
+        <div class="faq-a">No. You describe what's costing you time and money. I figure out the technical solution, build it, and hand it off working. You just use it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if something breaks after delivery? <span class="faq-arrow">›</span></button>
+        <div class="faq-a">I fix it. If the system breaks due to my build, that's on me. If an external API changes (like Meta or Airtable), retainer clients get priority fixes. One-time builds include 7 days of support post-delivery.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can you work with my existing tools? <span class="faq-arrow">›</span></button>
+        <div class="faq-a">Usually yes. n8n connects to 400+ tools natively. If you're on HubSpot, Salesforce, Shopify, Slack, Google Sheets, or most common SaaS platforms, I can plug in. Tell me what you're using in the form.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INTAKE FORM ═══ -->
+  <section class="form-section" id="start">
+    <div class="form-box reveal">
+      <h2 class="form-headline">Start your project</h2>
+      <p class="form-sub">Tell me what you want automated. I'll reply within 24 hours with a plan and a price.</p>
+      <div class="form-fields" id="formFields">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" id="fname" placeholder="First name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email or Instagram</label>
+            <input type="text" class="form-input" id="femail" placeholder="you@co.com or @handle" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What type of project?</label>
+          <select class="form-select" id="ftype">
+            <option value="" disabled selected>Select one</option>
+            <option>Lead follow-up / CRM automation</option>
+            <option>Reporting / dashboards</option>
+            <option>Client onboarding</option>
+            <option>Ad campaign automation</option>
+            <option>Data sync between tools</option>
+            <option>Custom internal tool / PWA</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What do you want automated?</label>
+          <textarea class="form-textarea" id="fdesc" placeholder="Describe the task that's eating your time. What tools do you currently use? How many hours does it take per week?"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Budget Range</label>
+          <select class="form-select" id="fbudget">
+            <option value="" disabled selected>Select one</option>
+            <option>$300–$500 (Quick Build)</option>
+            <option>$800–$2,500 (Full System)</option>
+            <option>$500–$1,500/mo (Retainer)</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <button class="btn btn-main form-submit" id="submitBtn" onclick="submitForm()">Submit Project Request</button>
+        <p class="form-note">No commitment. I'll review your request and reply with a clear plan.</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <h3>Request received.</h3>
+        <p>I'll review what you sent and reply within 24 hours with a plan and a price. Talk soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CLOSE CTA ═══ -->
+  <section class="close-cta">
+    <p>Prefer to chat first?</p>
+    <a href="https://ig.me/m/ainjlgaib" class="dm-link" target="_blank">DM me on Instagram →</a>
+  </section>
+
+  <footer class="footer">Angel · Los Angeles, CA</footer>
 </div>
+
+<script>
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── FAQ ──
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── FORM ──
+const WEBHOOK = 'N8N_WEBHOOK_PLACEHOLDER'; // injected at build time
+
+async function submitForm() {
+  const name   = document.getElementById('fname').value.trim();
+  const email  = document.getElementById('femail').value.trim();
+  const type   = document.getElementById('ftype').value;
+  const desc   = document.getElementById('fdesc').value.trim();
+  const budget = document.getElementById('fbudget').value;
+
+  if (!name || !email) { alert('Please enter your name and contact info.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const payload = { name, email, type, desc, budget, source: 'ainjlgaib.com', timestamp: new Date().toISOString() };
+
+  try {
+    if (WEBHOOK && !WEBHOOK.includes('PLACEHOLDER')) {
+      await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    }
+  } catch(e) { /* silent fail — still show success */ }
+
+  document.getElementById('formFields').classList.add('hide');
+  document.getElementById('formSuccess').classList.add('show');
+}
+</script>
 </body>
 </html>
