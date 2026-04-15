@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel | AI Automation & Systems Builder</title>
+<meta name="description" content="I build n8n workflows, Airtable backends, AI integrations, and custom dashboards for businesses that want to stop doing things by hand.">
+<meta property="og:title" content="Angel | AI Automation & Systems Builder">
+<meta property="og:description" content="I build systems that replace manual work.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ainjlgaib.com">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a25;--border:#2a2a3a;--text:#e8e8f0;--dim:#8888a0;--accent:#4af;--accent2:#7c5cff;--green:#4ade80;--glow:rgba(68,170,255,.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");z-index:9999}
+
+.container{max-width:680px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+.hero{padding:80px 0 60px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:40px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(68,170,255,.06),transparent 70%);pointer-events:none}
+.tag{display:inline-block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(68,170,255,.25);padding:6px 14px;border-radius:100px;margin-bottom:24px;background:rgba(68,170,255,.05)}
+h1{font-size:clamp(32px,6vw,48px);font-weight:700;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{font-size:18px;color:var(--dim);line-height:1.6;max-width:520px;margin:0 auto 32px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 28px;border-radius:10px;text-decoration:none;transition:all .2s}
+.btn-primary{background:var(--accent);color:var(--bg)}.btn-primary:hover{background:#6bc0ff;transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent}.btn-ghost:hover{border-color:var(--accent);background:rgba(68,170,255,.05)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:48px 0}
+.stat{background:var(--surface);padding:24px;text-align:center}
+.stat-num{font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--accent);display:block}
+.stat-label{font-size:12px;color:var(--dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+
+/* SECTION */
+.section{margin:56px 0}
+.section-title{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* SERVICES */
+.services{display:flex;flex-direction:column;gap:12px}
+.service{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .25s;cursor:default}
+.service:hover{border-color:rgba(68,170,255,.3);background:var(--surface2);transform:translateX(4px)}
+.service-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.service-name{font-size:16px;font-weight:600}
+.service-price{font-family:'Space Mono',monospace;font-size:14px;color:var(--green)}
+.service-desc{font-size:14px;color:var(--dim);line-height:1.5}
+
+/* PROJECTS */
+.projects{display:flex;flex-direction:column;gap:12px}
+.project{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .25s}
+.project:hover{border-color:rgba(124,92,255,.3);transform:translateX(4px)}
+.project-name{font-size:16px;font-weight:600;margin-bottom:4px}
+.project-type{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.project-desc{font-size:14px;color:var(--dim);line-height:1.5;margin-bottom:12px}
+.tech-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tech-tag{font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(68,170,255,.08);color:var(--accent);border:1px solid rgba(68,170,255,.15);font-family:'Space Mono',monospace}
+
+/* PROCESS */
+.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+.step-num{font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:var(--accent);opacity:.4;margin-bottom:8px}
+.step-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.step-desc{font-size:12px;color:var(--dim);line-height:1.4}
+
+/* CTA BOTTOM */
+.cta-section{text-align:center;padding:60px 0 80px}
+.cta-section h2{font-size:28px;font-weight:700;margin-bottom:12px}
+.cta-section p{color:var(--dim);margin-bottom:28px;font-size:16px}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px 0;border-top:1px solid var(--border);font-size:12px;color:var(--dim)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero,.stats,.section{animation:fadeUp .6s ease both}
+.stats{animation-delay:.1s}
+.section:nth-child(4){animation-delay:.15s}
+.section:nth-child(5){animation-delay:.2s}
+
+@media(max-width:500px){
+  .stats{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr}
+  .hero{padding:60px 0 40px}
+  .cta-row{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="container">
+  <div class="hero">
+    <div class="tag">AI Automation Builder</div>
+    <h1>I build systems that replace manual work.</h1>
+    <p class="subtitle">n8n workflows, Airtable backends, AI integrations, and custom dashboards for businesses that want to stop doing things by hand.</p>
+    <div class="cta-row">
+      <a href="https://ig.me/m/ainjlgaib" class="btn btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        DM Me
+      </a>
+      <a href="#projects" class="btn btn-ghost">See My Work</a>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Workflows Built</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Production Systems</span></div>
+    <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Airtable Bases</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Services</div>
+    <div class="services">
+      <div class="service">
+        <div class="service-header">
+          <span class="service-name">Single Workflow Automation</span>
+          <span class="service-price">from $300</span>
+        </div>
+        <div class="service-desc">One automated pipeline solving one problem. Lead capture, follow-up sequences, data sync, reporting — built and deployed in 3-5 days.</div>
+      </div>
+      <div class="service">
+        <div class="service-header">
+          <span class="service-name">Multi-Step System</span>
+          <span class="service-price">from $800</span>
+        </div>
+        <div class="service-desc">3-5 connected workflows with an Airtable backend. Full CRM pipeline, client onboarding, or operations system. Delivered in 1-2 weeks.</div>
+      </div>
+      <div class="service">
+        <div class="service-header">
+          <span class="service-name">Full Automation Suite</span>
+          <span class="service-price">from $2,500</span>
+        </div>
+        <div class="service-desc">End-to-end system: database architecture, automation workflows, AI layer, and dashboard. Your entire operation, automated.</div>
+      </div>
+      <div class="service">
+        <div class="service-header">
+          <span class="service-name">Monthly Retainer</span>
+          <span class="service-price">from $500/mo</span>
+        </div>
+        <div class="service-desc">Ongoing maintenance, new workflows, optimization, and priority support. Your automation keeps evolving as your business grows.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <div class="section-title">What I've Built</div>
+    <div class="projects">
+      <div class="project">
+        <div class="project-type">Construction Tech</div>
+        <div class="project-name">FieldOS — Construction Project Intelligence</div>
+        <div class="project-desc">Full communication and constraint tracking platform for general contractors. 9 linked database tables, AI-powered issue classification, role-based dashboards, automated notifications. Replaces $2K/month Procore licenses.</div>
+        <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Airtable</span><span class="tech-tag">Claude API</span><span class="tech-tag">Google Forms</span><span class="tech-tag">PWA</span></div>
+      </div>
+      <div class="project">
+        <div class="project-type">Ad Automation</div>
+        <div class="project-name">AdOS — Meta Ads Automation Engine</div>
+        <div class="project-desc">Automated Meta advertising system with deterministic routing logic. Handles 8 media paths (Photo/Reel/Story/Carousel × Paid/Organic), auto-scales winners, pauses underperformers.</div>
+        <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Meta Graph API</span><span class="tech-tag">Airtable</span><span class="tech-tag">Claude API</span></div>
+      </div>
+      <div class="project">
+        <div class="project-type">Personal AI OS</div>
+        <div class="project-name">Nexus — AI-Powered Life Operating System</div>
+        <div class="project-desc">Personal operating system with 10 Airtable tables, 3 automated n8n workflows (priority engine, approval executor, stale detector), AI chat with voice input, and a custom dashboard.</div>
+        <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Airtable</span><span class="tech-tag">Claude API</span><span class="tech-tag">Vercel</span><span class="tech-tag">PWA</span></div>
+      </div>
+      <div class="project">
+        <div class="project-type">Analysis Tool</div>
+        <div class="project-name">PIE — Pattern Intelligence Engine</div>
+        <div class="project-desc">Symbolic systems thinking framework with 5 analysis layers (Anchor, Action, Symbol, System, Leverage). Built as a PWA with persistent saved analyses.</div>
+        <div class="tech-tags"><span class="tech-tag">PWA</span><span class="tech-tag">Claude API</span><span class="tech-tag">IndexedDB</span></div>
+      </div>
+      <div class="project">
+        <div class="project-type">Voice Interface</div>
+        <div class="project-name">Operator — AI Voice Assistant</div>
+        <div class="project-desc">Jarvis-style voice PWA with 5 operational modes (Strategy, Research, Builder, Memory, Automate). Persistent memory via IndexedDB across sessions.</div>
+        <div class="tech-tags"><span class="tech-tag">PWA</span><span class="tech-tag">Web Speech API</span><span class="tech-tag">Claude API</span><span class="tech-tag">IndexedDB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">How It Works</div>
+    <div class="process">
+      <div class="step"><div class="step-num">01</div><div class="step-title">Tell Me the Problem</div><div class="step-desc">DM me what's eating your time. I'll tell you if automation can fix it.</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">I Build the System</div><div class="step-desc">n8n workflows + Airtable backend + AI where it makes sense. Tested and deployed.</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title">You Get Time Back</div><div class="step-desc">The system runs. You stop doing it manually. I maintain and improve over time.</div></div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to automate?</h2>
+    <p>Tell me what's taking too long. I'll show you how to fix it.</p>
+    <div class="cta-row">
+      <a href="https://ig.me/m/ainjlgaib" class="btn btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Start a Conversation
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">Built by Angel · Los Angeles, CA</div>
+</div>
+</body>
+</html>
