@@ -1,0 +1,16 @@
+{
+  "name": "ainjlgaib-site",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "jsdom": "^25.0.0",
+    "vitest": "^2.0.0",
+    "zod": "^4.0.0"
+  }
+}
