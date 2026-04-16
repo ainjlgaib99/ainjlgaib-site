@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "site-tools": {
+      "command": "node",
+      "args": ["mcp/site-tools-server.js"],
+      "cwd": "/home/user/ainjlgaib-site"
+    }
+  }
+}
